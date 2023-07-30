@@ -50,7 +50,7 @@ function getTopAlbums() {
             }
 
             if (a.innerText.includes("null")) {
-              a.remove();
+              section.remove();
             }
           });
 
@@ -72,7 +72,7 @@ function getTopAlbums() {
             }
           });
         });
-      });0
+      });
     })
     .catch((err) => {
       console.log(`error ${err}`);
