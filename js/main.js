@@ -1,20 +1,33 @@
-document.querySelector("button").addEventListener("click", getFetch);
+const btn = document.querySelector("button");
+const input = document.querySelector("input");
 
-function getFetch() {
-  const inputValue = document.querySelector("input").value.toLowerCase();
-  const url = `http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${inputValue}&api_key=5520b2454cda41fe7c2e6349b1627f55&format=json`;
+btn.addEventListener("click", getTopAlbums);
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    btn.click();
+  }
+});
 
-  fetch(url)
+function getTopAlbums() {
+  const inputValue = document.querySelector("input").value.toLowerCase().trim();
+  const artistTopAlbumsUrl = `http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${inputValue}&api_key=5520b2454cda41fe7c2e6349b1627f55&format=json`;
+
+  if (inputValue === "") {
+    document.querySelector("h2").innerText = "You must type an artist's name";
+  }
+
+  fetch(artistTopAlbumsUrl)
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
+      // console.log(data);
       const topAlbums = data.topalbums.album;
       const artistName = data.topalbums.album[0].artist.name;
-      console.log(data);
 
+      document.querySelector(".albums").innerHTML = "";
       document.querySelector("h2").innerText = `Artist: ${artistName}`;
+
       topAlbums.forEach((album) => {
         const albumName = album.name;
-        const playCount = album.playcount;
         const albumUrl = album.url;
         const albumCover = album.image[3]["#text"];
         const section = document.createElement("section");
@@ -23,20 +36,43 @@ function getFetch() {
         const a = document.createElement("a");
         const p = document.createElement("p");
 
+        fetch(
+          `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
+        )
+          .then((res) => res.json()) // parse response as JSON
+          .then((data2) => {
+            // console.log(data2.album);
+
+            if (data2.album) {
+              p.innerText = `${data2.album.listeners
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} listeners`;
+            }
+
+            if (a.innerText.includes("null")) {
+              a.remove();
+            }
+          });
+
         img.src = albumCover;
+        section.classList.add("album");
         a.innerText = albumName;
         a.href = albumUrl;
         a.setAttribute("target", "_blank");
-        p.innerText = playCount
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-        document
-          .querySelector(".albums")
-          .appendChild(section)
-          .append(img, h2, p);
-        h2.appendChild(a);
-      });
+        document.querySelector(".albums").append(section);
+        section.append(img, h2, p);
+        h2.append(a);
+
+        const albumSections = document.querySelectorAll(".album");
+        albumSections.forEach((albumSection) => {
+          albumSection.addEventListener("click", () => {
+            if (a.href) {
+              window.open(a.href);
+            }
+          });
+        });
+      });0
     })
     .catch((err) => {
       console.log(`error ${err}`);

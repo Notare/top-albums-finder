@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="This is where your description goes" />
-    <meta name="keywords" content="one, two, three" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Title in the tab</title>
+    <title>Top Albums Finder</title>
 
-    <!-- external CSS link -->
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>Artist's Top Albums</h1>
-    <input type="text" name="" value="" />
-    <button type="button" name="button">Get Albums</button>
-
-    <h2>Name?</h2>
-    <section class="albums"></section>
+    <div class="container">
+      <h1>Top Albums Finder</h1>
+      <p>
+        See the top albums for an artist based on the number of listeners on
+        Last.fm, ordered by popularity.
+      </p>
+      <label for="artist">Artist's Name:</label>
+      <input type="text" name="artist" id="artist" value="" />
+      <button type="button" name="button">Get Albums</button>
+      <h2></h2>
+      <section class="albums"></section>
+    </div>
 
     <script type="text/javascript" src="js/main.js"></script>
   </body>

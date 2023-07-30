@@ -1,21 +1,30 @@
-/******************************************
-/* CSS
-/*******************************************/
-
-/* Box Model Hack */
-*{
+* {
   box-sizing: border-box;
 }
-
-/******************************************
-/* LAYOUT
-/*******************************************/
-img{
-  display: block;
-  margin: 0 auto;
+body {
+  font-family: system-ui;
 }
-
-
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
+img {
+  border-radius: 1em;
+  max-width: 100%;
+}
+.container {
+  width: 90%;
+  max-width: 85rem;
+  margin: 0 auto;
+  padding: 1em 0;
+}
+.albums {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.album {
+  border: 1px solid black;
+  border-radius: 1em;
+  padding: 0.5em;
+}
+.album:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
