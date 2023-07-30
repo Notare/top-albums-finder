@@ -52,6 +52,10 @@ function getTopAlbums() {
             if (a.innerText.includes("null")) {
               section.remove();
             }
+
+            if (albumCover === "") {
+              img.src = "./img/cd.png";
+            }
           });
 
         img.src = albumCover;
@@ -67,11 +71,18 @@ function getTopAlbums() {
         const albumSections = document.querySelectorAll(".album");
         albumSections.forEach((albumSection) => {
           albumSection.addEventListener("click", () => {
-            if (a.href) {
+            const isTextSelected = window.getSelection().toString();
+
+            if (a.href && !isTextSelected) {
               window.open(a.href);
             }
           });
         });
+
+        const clickableElements = Array.from(section.querySelectorAll("a"));
+        clickableElements.forEach((el) =>
+          el.addEventListener("click", (e) => e.stopPropagation())
+        );
       });
     })
     .catch((err) => {
