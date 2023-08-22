@@ -10,21 +10,31 @@ input.addEventListener("keypress", (e) => {
 
 function getTopAlbums() {
   const inputValue = document.querySelector("input").value.toLowerCase().trim();
-  const artistTopAlbumsUrl = `http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${inputValue}&api_key=5520b2454cda41fe7c2e6349b1627f55&format=json`;
+  const artistTopAlbumsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(
+    inputValue
+  )}&api_key=5520b2454cda41fe7c2e6349b1627f55&format=json`;
 
   if (inputValue === "") {
     document.querySelector("h2").innerText = "You must type an artist's name";
   }
 
-  fetch(artistTopAlbumsUrl)
+  const controller = new AbortController();
+  fetch(artistTopAlbumsUrl, { signal: controller.signal })
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
       // console.log(data);
       const topAlbums = data.topalbums.album;
       const artistName = data.topalbums.album[0].artist.name;
+      console.log(artistName.toLowerCase());
+      console.log(inputValue);
 
       document.querySelector(".albums").innerHTML = "";
       document.querySelector("h2").innerText = `Artist: ${artistName}`;
+
+      if (artistName.toLowerCase() !== inputValue) {
+        controller.abort();
+        document.querySelector("h2").innerText = "Artist not found";
+      }
 
       topAlbums.forEach((album) => {
         const albumName = album.name;
