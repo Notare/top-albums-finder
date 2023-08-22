@@ -47,7 +47,7 @@ function getTopAlbums() {
         const p = document.createElement("p");
 
         fetch(
-          `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
+          `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
         )
           .then((res) => res.json()) // parse response as JSON
           .then((data2) => {
