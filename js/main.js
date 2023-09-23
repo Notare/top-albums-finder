@@ -11,12 +11,11 @@ input.addEventListener("keypress", (e) => {
 const btnTracklist = document.querySelector(".btn-tracklist");
 btnTracklist.addEventListener("click", toggleTracklist);
 function toggleTracklist() {
-  const ol = document.querySelector("ol");
-
-  if (ol.style.display === "" || ol.style.display === "none") {
-    ol.style.display = "block";
+  const list = document.querySelector("ol");
+  if (list.style.display === "" || list.style.display === "none") {
+    list.style.display = "block";
   } else {
-    ol.style.display = "none";
+    list.style.display = "none";
   }
 }
 
@@ -44,13 +43,13 @@ function getTopAlbums() {
         const albumName = album.name;
         const albumUrl = album.url;
         const albumCover = album.image[3]["#text"];
-        const section = document.createElement("section");
-        const img = document.createElement("img");
-        const h2 = document.createElement("h2");
-        const a = document.createElement("a");
-        const p = document.createElement("p");
-        const btn = document.createElement("button");
-        const ol = document.createElement("ol");
+        const createSection = document.createElement("section");
+        const createImg = document.createElement("img");
+        const createH2 = document.createElement("h2");
+        const createAnchor = document.createElement("a");
+        const createParagraph = document.createElement("p");
+        const createBtn = document.createElement("button");
+        const createList = document.createElement("ol");
 
         fetch(
           `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
@@ -58,40 +57,40 @@ function getTopAlbums() {
           .then((res) => res.json()) // parse response as JSON
           .then((data2) => {
             data2.album.tracks.track.forEach((track) => {
-              const li = document.createElement("li");
-              li.textContent = track.name;
-              ol.appendChild(li);
+              const createListItem = document.createElement("li");
+              createListItem.textContent = track.name;
+              createList.appendChild(createListItem);
             });
-            section.appendChild(ol);
-            ol.style.display = "none";
+            createSection.appendChild(createList);
+            createList.style.display = "none";
 
             if (data2.album) {
-              p.innerText = `${data2.album.listeners
+              createParagraph.innerText = `${data2.album.listeners
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} listeners`;
             }
 
-            if (a.innerText.includes("null")) {
-              section.remove();
+            if (createAnchor.innerText.includes("null")) {
+              createSection.remove();
             }
 
             if (albumCover === "") {
-              img.src = "./img/cd.png";
+              createImg.src = "./img/cd.png";
             }
           });
 
-        img.src = albumCover;
-        section.classList.add("album");
-        a.innerText = albumName;
-        a.href = albumUrl;
-        a.setAttribute("target", "_blank");
-        btn.innerText = "Toggle Tracklist";
-        btn.classList.add("btn-tracklist");
-        ol.classList.add("tracklist");
+        createImg.src = albumCover;
+        createSection.classList.add("album");
+        createAnchor.innerText = albumName;
+        createAnchor.href = albumUrl;
+        createAnchor.setAttribute("target", "_blank");
+        createBtn.innerText = "Toggle Tracklist";
+        createBtn.classList.add("btn-tracklist");
+        createList.classList.add("tracklist");
 
-        document.querySelector(".albums").append(section);
-        section.append(img, h2, p, btn);
-        h2.append(a);
+        document.querySelector(".albums").append(createSection);
+        createSection.append(createImg, createH2, createParagraph, createBtn);
+        createH2.append(createAnchor);
 
         //make text selectable without while making the whole container clickable to open link
         // const albumSections = document.querySelectorAll(".album");
@@ -105,7 +104,9 @@ function getTopAlbums() {
         // });
 
         //stop opening two links when clicking on the album name
-        const clickableElements = Array.from(section.querySelectorAll("a"));
+        const clickableElements = Array.from(
+          createSection.querySelectorAll("a")
+        );
         clickableElements.forEach((el) =>
           el.addEventListener("click", (e) => e.stopPropagation())
         );
