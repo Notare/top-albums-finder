@@ -4,6 +4,9 @@
 body {
   font-family: system-ui;
 }
+.show {
+  display: block;
+}
 img {
   border-radius: 0.5em;
   max-width: 100%;
@@ -21,6 +24,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  max-width: 70%;
 }
 .search-container > * {
   border-radius: 0.5em;
@@ -37,9 +41,9 @@ a {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 1em;
+  gap: 1.5em;
   margin: 0 auto;
 }
 .album {
@@ -68,6 +72,6 @@ a {
     padding-bottom: 0.5em;
   }
   .album:last-child {
-    margin-right: auto;
+    /* margin-right: auto; */
   }
 }

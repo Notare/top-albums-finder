@@ -8,6 +8,18 @@ input.addEventListener("keypress", (e) => {
   }
 });
 
+const btnTracklist = document.querySelector(".btn-tracklist");
+btnTracklist.addEventListener("click", toggleTracklist);
+function toggleTracklist() {
+  const ol = document.querySelector("ol");
+
+  if (ol.style.display === "" || ol.style.display === "none") {
+    ol.style.display = "block";
+  } else {
+    ol.style.display = "none";
+  }
+}
+
 function getTopAlbums() {
   const inputValue = document.querySelector("input").value.toLowerCase().trim();
   const artistTopAlbumsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(
@@ -15,26 +27,18 @@ function getTopAlbums() {
   )}&api_key=5520b2454cda41fe7c2e6349b1627f55&format=json`;
 
   if (inputValue === "") {
-    document.querySelector("h2").innerText = "You must type an artist's name";
+    document.querySelector("h2").innerText =
+      "You must type the full name of an artist";
   }
 
-  const controller = new AbortController();
-  fetch(artistTopAlbumsUrl, { signal: controller.signal })
+  fetch(artistTopAlbumsUrl)
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
-      // console.log(data);
       const topAlbums = data.topalbums.album;
       const artistName = data.topalbums.album[0].artist.name;
-      console.log(artistName.toLowerCase());
-      console.log(inputValue);
 
       document.querySelector(".albums").innerHTML = "";
       document.querySelector("h2").innerText = `Artist: ${artistName}`;
-
-      if (artistName.toLowerCase() !== inputValue) {
-        controller.abort();
-        document.querySelector("h2").innerText = "Artist not found";
-      }
 
       topAlbums.forEach((album) => {
         const albumName = album.name;
@@ -45,13 +49,21 @@ function getTopAlbums() {
         const h2 = document.createElement("h2");
         const a = document.createElement("a");
         const p = document.createElement("p");
+        const btn = document.createElement("button");
+        const ol = document.createElement("ol");
 
         fetch(
           `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
         )
           .then((res) => res.json()) // parse response as JSON
           .then((data2) => {
-            // console.log(data2.album);
+            data2.album.tracks.track.forEach((track) => {
+              const li = document.createElement("li");
+              li.textContent = track.name;
+              ol.appendChild(li);
+            });
+            section.appendChild(ol);
+            ol.style.display = "none";
 
             if (data2.album) {
               p.innerText = `${data2.album.listeners
@@ -73,22 +85,26 @@ function getTopAlbums() {
         a.innerText = albumName;
         a.href = albumUrl;
         a.setAttribute("target", "_blank");
+        btn.innerText = "Toggle Tracklist";
+        btn.classList.add("btn-tracklist");
+        ol.classList.add("tracklist");
 
         document.querySelector(".albums").append(section);
-        section.append(img, h2, p);
+        section.append(img, h2, p, btn);
         h2.append(a);
 
-        const albumSections = document.querySelectorAll(".album");
-        albumSections.forEach((albumSection) => {
-          albumSection.addEventListener("click", () => {
-            const isTextSelected = window.getSelection().toString();
+        //make text selectable without while making the whole container clickable to open link
+        // const albumSections = document.querySelectorAll(".album");
+        // albumSections.forEach((albumSection) => {
+        //   albumSection.addEventListener("click", () => {
+        //     const isTextSelected = window.getSelection().toString();
+        //     if (a.href && !isTextSelected) {
+        //       window.open(a.href);
+        //     }
+        //   });
+        // });
 
-            if (a.href && !isTextSelected) {
-              window.open(a.href);
-            }
-          });
-        });
-
+        //stop opening two links when clicking on the album name
         const clickableElements = Array.from(section.querySelectorAll("a"));
         clickableElements.forEach((el) =>
           el.addEventListener("click", (e) => e.stopPropagation())
