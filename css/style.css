@@ -4,6 +4,9 @@
 body {
   font-family: system-ui;
 }
+ol {
+  display: none;
+}
 .show {
   display: block;
 }

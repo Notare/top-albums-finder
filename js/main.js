@@ -8,16 +8,16 @@ input.addEventListener("keypress", (e) => {
   }
 });
 
-const btnTracklist = document.querySelector(".btn-tracklist");
-btnTracklist.addEventListener("click", toggleTracklist);
-function toggleTracklist() {
-  const list = document.querySelector("ol");
-  if (list.style.display === "" || list.style.display === "none") {
-    list.style.display = "block";
-  } else {
-    list.style.display = "none";
-  }
-}
+// const btnTracklist = document.querySelector(".btn-tracklist");
+// btnTracklist.addEventListener("click", toggleTracklist);
+
+// function toggleTracklist(list) {
+//   if (list.style.display === "block") {
+//     list.style.display = "none";
+//   } else {
+//     list.style.display = "block";
+//   }
+// }
 
 function getTopAlbums() {
   const inputValue = document.querySelector("input").value.toLowerCase().trim();
@@ -62,7 +62,7 @@ function getTopAlbums() {
               createList.appendChild(createListItem);
             });
             createSection.appendChild(createList);
-            createList.style.display = "none";
+            // createList.style.display = "none";
 
             if (data2.album) {
               createParagraph.innerText = `${data2.album.listeners
@@ -84,24 +84,33 @@ function getTopAlbums() {
         createAnchor.innerText = albumName;
         createAnchor.href = albumUrl;
         createAnchor.setAttribute("target", "_blank");
-        createBtn.innerText = "Toggle Tracklist";
-        createBtn.classList.add("btn-tracklist");
-        createList.classList.add("tracklist");
+        createBtn.innerText = "See Tracklist";
+
+        createBtn.addEventListener("click", (e) => {
+          createList.classList.toggle("show");
+          e.stopPropagation();
+
+          if (createList.classList.contains("show")) {
+            createBtn.textContent = "Hide Tracklist";
+          } else {
+            createBtn.textContent = "See Tracklist";
+          }
+        });
 
         document.querySelector(".albums").append(createSection);
         createSection.append(createImg, createH2, createParagraph, createBtn);
         createH2.append(createAnchor);
 
-        //make text selectable without while making the whole container clickable to open link
-        // const albumSections = document.querySelectorAll(".album");
-        // albumSections.forEach((albumSection) => {
-        //   albumSection.addEventListener("click", () => {
-        //     const isTextSelected = window.getSelection().toString();
-        //     if (a.href && !isTextSelected) {
-        //       window.open(a.href);
-        //     }
-        //   });
-        // });
+        //make text selectable while making the whole container clickable to open link
+        const albumSections = document.querySelectorAll(".album");
+        albumSections.forEach((albumSection) => {
+          albumSection.addEventListener("click", () => {
+            const isTextSelected = window.getSelection().toString();
+            if (createAnchor.href && !isTextSelected) {
+              window.open(createAnchor.href);
+            }
+          });
+        });
 
         //stop opening two links when clicking on the album name
         const clickableElements = Array.from(
