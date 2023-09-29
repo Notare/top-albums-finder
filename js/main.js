@@ -8,17 +8,6 @@ input.addEventListener("keypress", (e) => {
   }
 });
 
-// const btnTracklist = document.querySelector(".btn-tracklist");
-// btnTracklist.addEventListener("click", toggleTracklist);
-
-// function toggleTracklist(list) {
-//   if (list.style.display === "block") {
-//     list.style.display = "none";
-//   } else {
-//     list.style.display = "block";
-//   }
-// }
-
 function getTopAlbums() {
   const inputValue = document.querySelector("input").value.toLowerCase().trim();
   const artistTopAlbumsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(
@@ -62,20 +51,11 @@ function getTopAlbums() {
               createList.appendChild(createListItem);
             });
             createSection.appendChild(createList);
-            // createList.style.display = "none";
 
             if (data2.album) {
               createParagraph.innerText = `${data2.album.listeners
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} listeners`;
-            }
-
-            if (createAnchor.innerText.includes("null")) {
-              createSection.remove();
-            }
-
-            if (albumCover === "") {
-              createImg.src = "./img/cd.png";
             }
           });
 
@@ -85,6 +65,15 @@ function getTopAlbums() {
         createAnchor.href = albumUrl;
         createAnchor.setAttribute("target", "_blank");
         createBtn.innerText = "See Tracklist";
+        createBtn.classList.add("btn-tracklist");
+
+        if (albumCover === "") {
+          createImg.src = "./img/cd.png";
+        }
+
+        if (createAnchor.innerText.includes("null")) {
+          createSection.style.display = "none";
+        }
 
         createBtn.addEventListener("click", (e) => {
           createList.classList.toggle("show");

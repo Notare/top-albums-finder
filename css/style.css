@@ -45,7 +45,7 @@ a {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5em;
   margin: 0 auto;
 }
@@ -60,6 +60,15 @@ a {
   cursor: pointer;
   background: silver;
 }
+.album .btn-tracklist {
+  width: 100%;
+  border: 0;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+.album li {
+  margin-bottom: 0.5em;
+}
 @media (min-width: 46rem) {
   .albums {
     flex-direction: row;
@@ -67,6 +76,9 @@ a {
   .search-container {
     flex-direction: row;
     align-items: center;
+  }
+  .album {
+    min-height: 30em;
   }
   .album h2 {
     overflow: hidden;
