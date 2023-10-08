@@ -8,6 +8,23 @@ input.addEventListener("keypress", (e) => {
   }
 });
 
+const btnBackToTop = document.querySelector(".btn-back-to-top");
+btnBackToTop.addEventListener("click", topFunction);
+window.onscroll = function () {
+  scrollFunction();
+};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    btnBackToTop.style.display = "block";
+  } else {
+    btnBackToTop.style.display = "none";
+  }
+}
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
 function getTopAlbums() {
   const inputValue = document.querySelector("input").value.toLowerCase().trim();
   const artistTopAlbumsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(

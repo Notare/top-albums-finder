@@ -23,18 +23,36 @@ img {
 h1 {
   margin-top: 0;
 }
+button:focus,
+button:hover {
+  cursor: pointer;
+}
 .search-container {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  max-width: 70%;
+  max-width: 50%;
 }
 .search-container > * {
   border-radius: 0.5em;
+  padding: 0.5em;
 }
-button:focus,
-button:hover {
-  cursor: pointer;
+.search-container input {
+  border: 1px solid #2894ec;
+}
+.search-container button {
+  border: 0;
+  background: #2894ec;
+}
+.search-container button,
+.search-container button,
+.album .btn-tracklist,
+.album .btn-tracklist {
+  color: white;
+}
+.search-container button:hover,
+.search-container button:focus {
+  opacity: 0.7;
 }
 a {
   color: black;
@@ -58,16 +76,44 @@ a {
 .album:focus,
 .album:hover {
   cursor: pointer;
-  background: silver;
+  background: hwb(0 85% 15%);
 }
 .album .btn-tracklist {
   width: 100%;
   border: 0;
   padding: 0.5em;
   border-radius: 0.5em;
+  border: 1px solid black;
+  color: black;
+  background: none;
+}
+.album .btn-tracklist:hover,
+.album .btn-tracklist:focus {
+  background: #2894ec;
+  border: #2894ec;
+  color: white;
 }
 .album li {
   margin-bottom: 0.5em;
+}
+.btn-back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 0.1em;
+  right: 0.1em;
+  z-index: 99;
+  border: 0;
+  background: none;
+}
+.btn-back-to-top-icon {
+  width: 2em;
+  height: 2em;
+  border-radius: 100%;
+}
+.btn-back-to-top-icon:hover,
+.btn-back-to-top-icon:focus {
+  background: black;
+  color: white;
 }
 @media (min-width: 46rem) {
   .albums {
@@ -76,6 +122,7 @@ a {
   .search-container {
     flex-direction: row;
     align-items: center;
+    max-width: 100%;
   }
   .album {
     min-height: 30em;
@@ -85,8 +132,5 @@ a {
     white-space: nowrap;
     text-overflow: ellipsis;
     padding-bottom: 0.5em;
-  }
-  .album:last-child {
-    /* margin-right: auto; */
   }
 }
