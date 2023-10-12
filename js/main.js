@@ -56,12 +56,22 @@ function getTopAlbums() {
         const createParagraph = document.createElement("p");
         const createBtn = document.createElement("button");
         const createList = document.createElement("ol");
+        createParagraph.textContent =
+          "Number of listeners and tracklist not found";
 
         fetch(
           `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
         )
           .then((res) => res.json()) // parse response as JSON
           .then((data2) => {
+            const numOfListeners = data2.album.listeners;
+            console.log(numOfListeners);
+
+            // if (data2.album.tracks === undefined) {
+            //   createParagraph.innerText =
+            //     "Number of listeners and tracklist not found";
+            // }
+
             data2.album.tracks.track.forEach((track) => {
               const createListItem = document.createElement("li");
               createListItem.textContent = track.name;
@@ -70,7 +80,7 @@ function getTopAlbums() {
             createSection.appendChild(createList);
 
             if (data2.album) {
-              createParagraph.innerText = `${data2.album.listeners
+              createParagraph.innerText = `${numOfListeners
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} listeners`;
             }

@@ -20,6 +20,11 @@ img {
   margin: 0 auto;
   padding: 1em 0;
 }
+.logo {
+  width: 10em;
+  margin: 0 auto;
+  display: block;
+}
 h1 {
   margin-top: 0;
 }
@@ -40,18 +45,19 @@ button:hover {
 .search-container input {
   border: 1px solid #2894ec;
 }
-.search-container button {
+.search-container button,
+.album .btn-tracklist {
   border: 0;
   background: #2894ec;
 }
 .search-container button,
-.search-container button,
-.album .btn-tracklist,
 .album .btn-tracklist {
   color: white;
 }
 .search-container button:hover,
-.search-container button:focus {
+.search-container button:focus,
+.album .btn-tracklist:hover,
+.album .btn-tracklist:focus {
   opacity: 0.7;
 }
 a {
@@ -83,9 +89,6 @@ a {
   border: 0;
   padding: 0.5em;
   border-radius: 0.5em;
-  border: 1px solid black;
-  color: black;
-  background: none;
 }
 .album .btn-tracklist:hover,
 .album .btn-tracklist:focus {
@@ -123,6 +126,9 @@ a {
     flex-direction: row;
     align-items: center;
     max-width: 100%;
+  }
+  .search-container button {
+    padding: 0.7em 2em;
   }
   .album {
     min-height: 30em;
