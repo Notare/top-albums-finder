@@ -119,6 +119,16 @@ a {
   color: white;
 }
 @media (min-width: 46rem) {
+  .container-logo {
+    margin-bottom: 1em;
+  }
+  .container-logo > * {
+    display: inline;
+    vertical-align: middle;
+  }
+  .container-logo p {
+    margin-left: 1em;
+  }
   .albums {
     flex-direction: row;
   }
