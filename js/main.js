@@ -41,101 +41,100 @@ function getTopAlbums() {
     .then((data) => {
       const topAlbums = data.topalbums.album;
       const artistName = data.topalbums.album[0].artist.name;
-
       document.querySelector(".albums").innerHTML = "";
-      document.querySelector("h2").innerText = `Artist: ${artistName}`;
 
-      topAlbums.forEach((album) => {
-        const albumName = album.name;
-        const albumUrl = album.url;
-        const albumCover = album.image[3]["#text"];
-        const createSection = document.createElement("section");
-        const createImg = document.createElement("img");
-        const createH2 = document.createElement("h2");
-        const createAnchor = document.createElement("a");
-        const createParagraph = document.createElement("p");
-        const createBtn = document.createElement("button");
-        const createList = document.createElement("ol");
-        createParagraph.textContent =
-          "Number of listeners and tracklist not found";
+      if (inputValue === artistName.toLowerCase()) {
+        document.querySelector("h2").innerText = `Artist: ${artistName}`;
 
-        fetch(
-          `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
-        )
-          .then((res) => res.json()) // parse response as JSON
-          .then((data2) => {
-            const numOfListeners = data2.album.listeners;
-            console.log(numOfListeners);
+        topAlbums.forEach((album) => {
+          const albumName = album.name;
+          const albumUrl = album.url;
+          const albumCover = album.image[3]["#text"];
+          const createSection = document.createElement("section");
+          const createImg = document.createElement("img");
+          const createH2 = document.createElement("h2");
+          const createAnchor = document.createElement("a");
+          const createParagraph = document.createElement("p");
+          const createBtn = document.createElement("button");
+          const createList = document.createElement("ol");
+          createParagraph.textContent =
+            "Number of listeners and tracklist not found";
 
-            // if (data2.album.tracks === undefined) {
-            //   createParagraph.innerText =
-            //     "Number of listeners and tracklist not found";
-            // }
+          fetch(
+            `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=5520b2454cda41fe7c2e6349b1627f55&artist=${inputValue}&album=${albumName}&format=json`
+          )
+            .then((res) => res.json()) // parse response as JSON
+            .then((data2) => {
+              const numOfListeners = data2.album.listeners;
 
-            data2.album.tracks.track.forEach((track) => {
-              const createListItem = document.createElement("li");
-              createListItem.textContent = track.name;
-              createList.appendChild(createListItem);
+              data2.album.tracks.track.forEach((track) => {
+                const createListItem = document.createElement("li");
+                createListItem.textContent = track.name;
+                createList.appendChild(createListItem);
+              });
+              createSection.appendChild(createList);
+
+              if (data2.album) {
+                createParagraph.innerText = `${numOfListeners
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} listeners`;
+              }
             });
-            createSection.appendChild(createList);
 
-            if (data2.album) {
-              createParagraph.innerText = `${numOfListeners
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} listeners`;
-            }
-          });
+          createImg.src = albumCover;
+          createSection.classList.add("album");
+          createAnchor.innerText = albumName;
+          createAnchor.href = albumUrl;
+          createAnchor.setAttribute("target", "_blank");
+          createBtn.innerText = "See Tracklist";
+          createBtn.classList.add("btn-tracklist");
 
-        createImg.src = albumCover;
-        createSection.classList.add("album");
-        createAnchor.innerText = albumName;
-        createAnchor.href = albumUrl;
-        createAnchor.setAttribute("target", "_blank");
-        createBtn.innerText = "See Tracklist";
-        createBtn.classList.add("btn-tracklist");
-
-        if (albumCover === "") {
-          createImg.src = "./img/cd.png";
-        }
-
-        if (createAnchor.innerText.includes("null")) {
-          createSection.style.display = "none";
-        }
-
-        createBtn.addEventListener("click", (e) => {
-          createList.classList.toggle("show");
-          e.stopPropagation();
-
-          if (createList.classList.contains("show")) {
-            createBtn.textContent = "Hide Tracklist";
-          } else {
-            createBtn.textContent = "See Tracklist";
+          if (albumCover === "") {
+            createImg.src = "./img/cd.png";
           }
-        });
 
-        document.querySelector(".albums").append(createSection);
-        createSection.append(createImg, createH2, createParagraph, createBtn);
-        createH2.append(createAnchor);
+          if (createAnchor.innerText.includes("null")) {
+            createSection.style.display = "none";
+          }
 
-        //make text selectable while making the whole container clickable to open link
-        const albumSections = document.querySelectorAll(".album");
-        albumSections.forEach((albumSection) => {
-          albumSection.addEventListener("click", () => {
-            const isTextSelected = window.getSelection().toString();
-            if (createAnchor.href && !isTextSelected) {
-              window.open(createAnchor.href);
+          createBtn.addEventListener("click", (e) => {
+            createList.classList.toggle("show");
+            e.stopPropagation();
+
+            if (createList.classList.contains("show")) {
+              createBtn.textContent = "Hide Tracklist";
+            } else {
+              createBtn.textContent = "See Tracklist";
             }
           });
-        });
 
-        //stop opening two links when clicking on the album name
-        const clickableElements = Array.from(
-          createSection.querySelectorAll("a")
-        );
-        clickableElements.forEach((el) =>
-          el.addEventListener("click", (e) => e.stopPropagation())
-        );
-      });
+          document.querySelector(".albums").append(createSection);
+          createSection.append(createImg, createH2, createParagraph, createBtn);
+          createH2.append(createAnchor);
+
+          //make text selectable while making the whole container clickable to open link
+          const albumSections = document.querySelectorAll(".album");
+          albumSections.forEach((albumSection) => {
+            albumSection.addEventListener("click", () => {
+              const isTextSelected = window.getSelection().toString();
+              if (createAnchor.href && !isTextSelected) {
+                window.open(createAnchor.href);
+              }
+            });
+          });
+
+          //stop opening two links when clicking on the album name
+          const clickableElements = Array.from(
+            createSection.querySelectorAll("a")
+          );
+          clickableElements.forEach((el) =>
+            el.addEventListener("click", (e) => e.stopPropagation())
+          );
+        });
+      } else {
+        document.querySelector("h2").innerText =
+          "Artist not found or you typed it wrong";
+      }
     })
     .catch((err) => {
       console.log(`error ${err}`);
