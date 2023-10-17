@@ -133,7 +133,7 @@ function getTopAlbums() {
         });
       } else {
         document.querySelector("h2").innerText =
-          "Artist not found or you typed it wrong";
+          "It looks like the artist you entered isn't in the database. Double-check the spelling or try a different one.";
       }
     })
     .catch((err) => {
