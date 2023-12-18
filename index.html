@@ -27,20 +27,24 @@
   </head>
   <body>
     <div class="container">
-      <div class="container-logo">
-        <img class="logo" src="./img/logo.png" alt="" />
-        <p>
-          See the top albums for an artist based on the number of listeners on
-          Last.fm, ordered by popularity.
-        </p>
+      <div class="container-landing-page">
+        <div class="container-logo">
+          <img class="logo" src="./img/logo.png" alt="" />
+          <p>
+            See the top albums for an artist based on the number of listeners on
+            Last.fm, ordered by popularity.
+          </p>
+        </div>
+        <div class="search-container">
+          <label for="artist">Type the artist's full name:</label>
+          <input type="text" name="artist" id="artist" value="" required />
+          <button type="button" name="button">Show albums</button>
+        </div>
       </div>
-      <div class="search-container">
-        <label for="artist">Type the artist's full name:</label>
-        <input type="text" name="artist" id="artist" value="" required />
-        <button type="button" name="button">Show albums</button>
-      </div>
+
       <h2></h2>
       <section class="albums"></section>
+
       <button title="Go to the top of the page" class="btn-back-to-top">
         <svg
           xmlns="http://www.w3.org/2000/svg"

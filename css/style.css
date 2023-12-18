@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 body {
-  font-family: system-ui;
+  font-family: system-ui, sans-serif;
+  background: #d9effd;
 }
 ol {
   display: none;
@@ -40,10 +41,13 @@ button:hover {
 }
 .search-container > * {
   border-radius: 0.5em;
-  padding: 0.5em;
 }
 .search-container input {
+  padding: 0.5em;
   border: 1px solid #2894ec;
+}
+.search-container button {
+  padding: 0.5em;
 }
 .search-container button,
 .album .btn-tracklist {
@@ -76,13 +80,13 @@ a {
 .album {
   border-radius: 0.5em;
   padding: 0.5em;
-  background: whitesmoke;
+  background: #bcceda;
   max-width: 20rem;
 }
 .album:focus,
 .album:hover {
   cursor: pointer;
-  background: hwb(0 85% 15%);
+  background: #9fafb9;
 }
 .album .btn-tracklist {
   width: 100%;
@@ -129,15 +133,23 @@ footer a:focus {
   opacity: 0.5;
 }
 @media (min-width: 46rem) {
-  .container-logo {
-    margin-bottom: 1em;
+  .container-landing-page {
+    /* max-width: 50em; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh; */
   }
   .container-logo > * {
     display: inline;
     vertical-align: middle;
   }
+  .container-logo .logo {
+    /* width: 20em; */
+  }
   .container-logo p {
-    margin-left: 1em;
+    /* font-size: 2rem; */
   }
   .albums {
     flex-direction: row;
@@ -160,6 +172,5 @@ footer a:focus {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding-bottom: 0.5em;
   }
 }
