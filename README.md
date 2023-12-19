@@ -4,7 +4,7 @@ A web application that helps users discover an artist's top albums, ordered by p
 
 **Link to project:** https://notare.github.io/top-albums-finder
 
-<img src="./img/taf.gif" alt="">
+<img src="./img/repo-gif.gif" alt="">
 
 ## How It's Made:
 
