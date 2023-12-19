@@ -80,13 +80,13 @@ a {
 .album {
   border-radius: 0.5em;
   padding: 0.5em;
-  background: #bcceda;
+  background: #cbdde9;
   max-width: 20rem;
 }
 .album:focus,
 .album:hover {
   cursor: pointer;
-  background: #9fafb9;
+  background: #b1bfc9;
 }
 .album .btn-tracklist {
   width: 100%;
@@ -134,22 +134,28 @@ footer a:focus {
 }
 @media (min-width: 46rem) {
   .container-landing-page {
-    /* max-width: 50em; */
-    /* display: flex;
-    align-items: center;
+    display: flex;
     justify-content: center;
-    flex-direction: column;
-    min-height: 100vh; */
-  }
-  .container-logo > * {
-    display: inline;
-    vertical-align: middle;
+    align-items: center;
+    min-height: 90vh;
+    gap: 5em;
   }
   .container-logo .logo {
-    /* width: 20em; */
+    width: 20em;
   }
-  .container-logo p {
-    /* font-size: 2rem; */
+  .input-section {
+    max-width: 40em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .input-section p {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+  .input-label {
+    font-size: 1.3rem;
+    font-weight: bold;
   }
   .albums {
     flex-direction: row;
@@ -159,8 +165,13 @@ footer a:focus {
     align-items: center;
     max-width: 100%;
   }
+  .search-container input {
+    border: 0;
+    height: 100%;
+  }
   .search-container button {
     padding: 0.7em 2em;
+    height: 100%;
   }
   .albums {
     align-items: flex-start;

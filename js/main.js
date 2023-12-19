@@ -30,6 +30,10 @@ function getTopAlbums() {
   const artistTopAlbumsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(
     inputValue
   )}&api_key=5520b2454cda41fe7c2e6349b1627f55&format=json`;
+  const containerLandingPage = document.querySelector(
+    ".container-landing-page"
+  );
+  containerLandingPage.style.minHeight = "auto";
 
   if (inputValue === "") {
     document.querySelector("h2").innerText =
