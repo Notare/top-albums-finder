@@ -6,7 +6,7 @@
 
 [Description in English](#description-in-english)
 
-[Descrição em Português](#descricao-em-portugues)
+[Descrição em Português](#descrição-em-português)
 
 # Description in English
 
