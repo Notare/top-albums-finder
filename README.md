@@ -5,6 +5,7 @@
 **Link:** https://notare.github.io/top-albums-finder
 
 [Description in English](#description-in-english)
+
 [Descrição em Português](#descricao-em-portugues)
 
 # Description in English
