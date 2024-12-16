@@ -1,10 +1,16 @@
 # Top Albums Finder
 
+<img src="./img/repo-gif.gif" alt="">
+
+**Link:** https://notare.github.io/top-albums-finder
+
+[Description in English](#description-in-english)
+
+# Description in English
+
 A website that helps users discover an artist's top albums, ordered by popularity based on the number of listeners on Last.fm. Users can search for their favorite artists and explore their top albums along with detailed information.
 
-**Link to project:** https://notare.github.io/top-albums-finder
 
-<img src="./img/repo-gif.gif" alt="">
 
 ## How It's Made:
 
