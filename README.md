@@ -33,3 +33,29 @@ Developing Top Albums Finder was an awesome learning experience. A significant f
 **Hackathon Vacuum (login page):** https://github.com/Notare/hackathon-vacuum
 
 **Bia Cabeleireira (hair salon):** https://github.com/Notare/bia-cabeleireira
+
+# Descrição em Português
+
+Um site que ajuda os usuários a descobrir os álbuns mais populares de um artista, ordenados por popularidade com base no número de ouvintes no Last.fm. Os usuários podem pesquisar seus artistas favoritos e explorar seus álbuns principais com informações detalhadas.
+
+## Como Foi Feito:
+
+**Tecnologias usadas:** HTML, CSS, JavaScript
+
+Foi adotada uma abordagem mobile-first, garantindo que a aplicação ofereça uma experiência fluida em diversos dispositivos. A interface do usuário foi projetada para ser simples e acessível. Os usuários podem pesquisar por seus artistas favoritos, acionando uma requisição fetch para a API do Last.fm. Essa operação de fetch recupera os álbuns principais do artista, que são exibidos na página ordenados pelo número de ouvintes, mostrando a capa do álbum, o nome e um botão para mostrar a lista de faixas. Efeitos de hover foram cuidadosamente incorporados para melhorar a acessibilidade para os usuários.
+
+## Otimizações
+
+Durante o desenvolvimento do projeto, foi identificada uma otimização importante. Alguns artistas possuem uma discografia extensa, o que pode levar a um excesso de rolagem para os usuários. Para resolver isso, foi introduzido um botão de "Voltar ao Topo", permitindo que os usuários retornem facilmente ao topo da página, melhorando a experiência geral.
+
+## Lições Aprendidas:
+
+Desenvolver o projeto foi uma experiência incrível de aprendizado. Houve um foco significativo na integração com APIs, entendendo como fazer requisições eficazes a APIs e lidar com as respostas resultantes. Essa expertise foi fundamental para conectar a aplicação a fontes de dados externas. A manipulação dinâmica do DOM desempenhou um papel essencial na criação de recursos interativos e na resposta às interações do usuário. Esses aspectos do projeto forneceram insights valiosos e um entendimento mais profundo sobre como aplicativos web podem se integrar a dados externos e engajar os usuários de forma eficaz.
+
+## Outros Projetos:
+
+**Hades - Select Your Character:** https://github.com/Notare/hades-select-your-character
+
+**Hackathon Vacuum (página de login):** https://github.com/Notare/hackathon-vacuum
+
+**Bia Cabeleireira (salão de beleza):** https://github.com/Notare/bia-cabeleireira
