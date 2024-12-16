@@ -12,8 +12,6 @@
 
 A website that helps users discover an artist's top albums, ordered by popularity based on the number of listeners on Last.fm. Users can search for their favorite artists and explore their top albums along with detailed information.
 
-
-
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript
