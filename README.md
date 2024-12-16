@@ -56,7 +56,7 @@ Desenvolver o projeto foi uma experiência incrível de aprendizado. Houve um fo
 
 ## Outros Projetos:
 
-**Hades - Select Your Character:** https://github.com/Notare/hades-select-your-character
+**Hades - Selecione Seu Personagem:** https://github.com/Notare/hades-select-your-character
 
 **Hackathon Vacuum (página de login):** https://github.com/Notare/hackathon-vacuum
 
