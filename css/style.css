@@ -1,73 +1,89 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   font-family: system-ui, sans-serif;
-  background: #d9effd;
 }
+
 ol {
   display: none;
 }
+
 .show {
   display: block;
 }
+
 img {
   border-radius: 0.5em;
   max-width: 100%;
 }
+
 .container {
   width: 90%;
   max-width: 85rem;
   margin: 0 auto;
   padding: 1em 0;
 }
+
 .logo {
   width: 10em;
   margin: 0 auto;
   display: block;
 }
+
 h1 {
   margin-top: 0;
 }
+
 button:focus,
 button:hover {
   cursor: pointer;
 }
+
 .search-container {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   max-width: 50%;
 }
-.search-container > * {
+
+.search-container>* {
   border-radius: 0.5em;
 }
+
 .search-container input {
   padding: 0.5em;
   border: 1px solid #2894ec;
 }
+
 .search-container button {
   padding: 0.5em;
 }
+
 .search-container button,
 .album .btn-tracklist {
   border: 0;
   background: #2894ec;
 }
+
 .search-container button,
 .album .btn-tracklist {
   color: white;
 }
+
 .search-container button:hover,
 .search-container button:focus,
 .album .btn-tracklist:hover,
 .album .btn-tracklist:focus {
   opacity: 0.7;
 }
+
 a {
   color: black;
   text-decoration: none;
 }
+
 .albums {
   display: flex;
   flex-direction: column;
@@ -77,32 +93,38 @@ a {
   gap: 1.5em;
   margin: 0 auto;
 }
+
 .album {
   border-radius: 0.5em;
   padding: 0.5em;
   background: #cbdde9;
   max-width: 20rem;
 }
+
 .album:focus,
 .album:hover {
   cursor: pointer;
   background: #b1bfc9;
 }
+
 .album .btn-tracklist {
   width: 100%;
   border: 0;
   padding: 0.5em;
   border-radius: 0.5em;
 }
+
 .album .btn-tracklist:hover,
 .album .btn-tracklist:focus {
   background: #2894ec;
   border: #2894ec;
   color: white;
 }
+
 .album li {
   margin-bottom: 0.5em;
 }
+
 .btn-back-to-top {
   display: none;
   position: fixed;
@@ -112,26 +134,32 @@ a {
   border: 0;
   background: none;
 }
+
 .btn-back-to-top-icon {
   width: 2em;
   height: 2em;
   border-radius: 100%;
 }
+
 .btn-back-to-top-icon:hover,
 .btn-back-to-top-icon:focus {
   background: black;
   color: white;
 }
+
 footer {
   text-align: center;
 }
+
 footer a {
   text-decoration: underline;
 }
+
 footer a:hover,
 footer a:focus {
   opacity: 0.5;
 }
+
 @media (min-width: 46rem) {
   .container-landing-page {
     display: flex;
@@ -140,45 +168,56 @@ footer a:focus {
     min-height: 90vh;
     gap: 5em;
   }
+
   .container-logo .logo {
     width: 20em;
   }
+
   .input-section {
     max-width: 40em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
+
   .input-section p {
     font-size: 2rem;
     margin-top: 0;
   }
+
   .input-label {
     font-size: 1.3rem;
     font-weight: bold;
   }
+
   .albums {
     flex-direction: row;
   }
+
   .search-container {
     flex-direction: row;
     align-items: center;
     max-width: 100%;
   }
+
   .search-container input {
-    border: 0;
+    /* border: 0; */
     height: 100%;
   }
+
   .search-container button {
     padding: 0.7em 2em;
     height: 100%;
   }
+
   .albums {
     align-items: flex-start;
   }
+
   .album {
     min-height: 30em;
   }
+
   .album h2 {
     overflow: hidden;
     white-space: nowrap;
