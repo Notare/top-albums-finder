@@ -194,18 +194,18 @@ footer a:focus {
     flex-direction: row;
   }
 
-  .search-container {
+  .search-form {
     flex-direction: row;
     align-items: center;
     max-width: 100%;
   }
 
-  .search-container input {
+  .search-form input {
     /* border: 0; */
     height: 100%;
   }
 
-  .search-container button {
+  .search-form button {
     padding: 0.7em 2em;
     height: 100%;
   }
